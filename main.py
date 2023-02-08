@@ -18,17 +18,19 @@ ct = ClinicalTrials()
 
 for i in list(ct.study_fields):
     print(i)
+    
+search="immune checkpoint inhibitor"
+# search="(Immune-checkpoint inhibitor+PD-L1+PD-1)"
 
 # Get the NCTId, Condition and Brief title fields from 500 studies related to Coronavirus and Covid, in csv format.
 tmp = ct.get_study_fields(
-    search_expr="(Immune-checkpoint inhibitor+PD-L1+PD-1)",
+    search_expr=search,
     fields=["NCTId", "Condition", "BriefTitle", "OfficialTitle","Keyword","Phase",
             "WhyStopped","PrimaryOutcomeDescription","PrimaryOutcomeMeasure","IsFDARegulatedDrug",
             "InterventionDescription","InterventionName","InterventionOtherName","InterventionType",
             "EligibilityCriteria","EnrollmentCount","StartDate",'LastKnownStatus',"LastUpdatePostDate","ReferenceCitation"],
-    max_studies=500,
-    fmt="csv",
-)
+    max_studies=3000,
+    fmt="csv")
 # Get the count of studies related to Coronavirus and COVID.
 # ClinicalTrials limits API queries to 1000 records
 # Count of studies may be useful to build loops when you want to retrieve more than 1000 records
